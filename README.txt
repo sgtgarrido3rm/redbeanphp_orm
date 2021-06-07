@@ -1,6 +1,7 @@
-Instruções:
+InstruÃ§Ãµes:
 
 - Banco de dados utilizado: mysql;
-- Importar o arquivo meuportfolio.sql ou copiar o conteúdo do arquivo e rodar no mysql;
+- Extrair os arquivos no diretorio meuportfolio
+- Importar o arquivo meuportfolio.sql ou copiar o conteÃºdo do arquivo e rodar no mysql;
 
 Contato: sgtgarrido3rm@gmail.com

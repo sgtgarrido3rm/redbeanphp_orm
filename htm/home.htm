@@ -1,0 +1,152 @@
+<!-- INCLUIR BLOCO : _Cabecalho -->
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+
+<!-- INCLUIR BLOCO : _Navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="index3.html" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">{titulo}</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user panel (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="../dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{usuario}</a>
+        </div>
+      </div>
+
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="novo.php" class="nav-link">
+            <i class="nav-icon fa fa-user-plus"></i>
+            <p>
+              Novo Usuário
+            </p>
+          </a>
+        </li>
+      </ul>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Pesquisa (não implementada)" aria-label="Pesquisa">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <div class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1 class="m-0">Olá Sr {usuario}</h1>
+          </div><!-- /.col -->
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Início</a></li>
+              <li class="breadcrumb-item active">Usuário</li>
+            </ol>
+          </div><!-- /.col -->
+        </div><!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content-header -->
+
+    <!-- Main content -->
+    <div class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <div class="col-lg-6">
+            <div class="card card-primary card-outline">
+              <div class="card-body">
+                <h5 class="card-title">Lista de Usuários:</h5><br />
+
+                <p class="card-text">
+                  <!-- INICIO BLOCO : usuarios -->
+                  ID {uid} - {uemail} (Senha: {usenha}) | <a id="linkDel{uid}" data-id="{uid}" href="javascript: void(0)" class="card-link excluir">excluir</a><br />
+                  <!-- FIM BLOCO : usuarios -->
+                </p>
+                <a href="perfil.php" class="card-link">Ver meu perfil</a>
+              </div>
+
+              <div class="alert alert-success alert-dismissible" style="display: {block_none}">
+                  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+                  <h5><i class="icon fas fa-check"></i> Sucesso!</h5>
+                  {sucessoCadastro}
+                </div>
+            </div><!-- /.card -->
+          </div>
+		  
+		   <div class="col-lg-6">
+
+            <div class="card card-primary card-outline">
+              <div class="card-body">
+                <h5 class="card-title">Tecnologia utilizada</h5>
+
+                <p class="card-text">
+                  Visando mostrar habilidades de desenvolvimento com ORM, este projeto utiliza RedBeanPHP para incluir, exibir, atualizar e excluir dados.<br />Saiba mais sobre RedBeanPHP <a href="https://redbeanphp.com/index.php" target="_Blank" class="card-link">clicando aqui</a>
+                </p>
+                <a href="javascript: void(0)" class="card-link">Garrido</a>
+              </div>
+            </div><!-- /.card -->
+          </div>
+
+
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </div>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+  <!-- Main Footer -->
+<!-- INCLUIR BLOCO : _Rodape -->
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED SCRIPTS -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+</body>
+</html>
+<script type="text/javascript">
+  $(".card-text").on('click', '.excluir', function(e){
+  e.preventDefault(); 
+
+  var id = $(this).attr('data-id');
+
+  $.ajax({ type: "POST", 
+      data: {'acao': 'excluir','id': id}, 
+      url: "exec.php", 
+      success: function(data) { 
+          alert('Usuário excluído com sucesso!'); 
+          location.reload();
+      } 
+  });
+}); 
+</script>

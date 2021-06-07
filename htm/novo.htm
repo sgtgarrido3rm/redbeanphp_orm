@@ -1,0 +1,174 @@
+<!-- INCLUIR BLOCO : _Cabecalho -->
+<body class="hold-transition sidebar-mini">
+<div class="wrapper">
+  <!-- Navbar -->
+<!-- INCLUIR BLOCO : _Navbar -->
+  <!-- /.navbar -->
+
+  <!-- Main Sidebar Container -->
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    <!-- Brand Logo -->
+    <a href="home.php" class="brand-link">
+      <img src="../dist/img/AdminLTELogo.png" alt="{titulo}" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">{titulo}</span>
+    </a>
+
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <!-- Sidebar user (optional) -->
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{foto}" class="img-circle elevation-2" alt="User Image">
+        </div>
+        <div class="info">
+          <a href="#" class="d-block">{usuario}</a>
+        </div>
+      </div>
+
+      <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+        <li class="nav-item">
+          <a href="novo.php" class="nav-link">
+            <i class="nav-icon fa fa-user-plus"></i>
+            <p>
+              Novo Usuário
+            </p>
+          </a>
+        </li>
+      </ul>
+
+      <!-- SidebarSearch Form -->
+      <div class="form-inline">
+        <div class="input-group" data-widget="sidebar-search">
+          <input class="form-control form-control-sidebar" type="search" placeholder="Search" aria-label="Search">
+          <div class="input-group-append">
+            <button class="btn btn-sidebar">
+              <i class="fas fa-search fa-fw"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>Cadastro de Usuário</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="#">Início</a></li>
+              <li class="breadcrumb-item active">Cadastro de Usuário</li>
+            </ol>
+          </div>
+        </div>
+      </div><!-- /.container-fluid -->
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="container-fluid">
+        <div class="row">
+          <!-- /.col -->
+          <div class="col-md-9">
+            <div class="card">
+              <div class="card-body">
+                <div class="tab-content">				  
+                  <div class="tab-pane active" id="settings">
+                    <form class="form-horizontal" action="exec.php" method="post">
+                      <div class="form-group row">
+                        <label for="txtUsuario" class="col-sm-2 col-form-label">Usuário</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="txtUsuario" name="txtUsuario" placeholder="Nome" value="">
+                        </div>
+                      </div>
+                      <div class="form-group row">
+                        <label for="txtEmail" class="col-sm-2 col-form-label">E-Mail</label>
+                        <div class="col-sm-10">
+                          <input type="email" class="form-control" id="txtEmail" name="txtEmail" placeholder="E-Mail" value="">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <label for="txtEmail" class="col-sm-2 col-form-label">Senha</label>
+                        <div class="col-sm-10">
+                          <input type="text" class="form-control" id="txtSenha" name="txtSenha" placeholder="Senha" value="">
+                        </div>
+                      </div>
+
+                      <div class="form-group row">
+                        <div class="offset-sm-2 col-sm-10">
+                          <button type="submit" class="btn btn-success salvar">Cadastrar</button><p></p>
+                        </div>
+                      </div>
+
+					           <input type="hidden" id="acao" name="acao" value="cadastrar" />
+                    </form>
+                  </div>
+                  <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+              </div><!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+          </div>
+          <!-- /.col -->
+        </div>
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+<!-- INCLUIR BLOCO : _Rodape -->
+
+  <!-- Control Sidebar -->
+  <aside class="control-sidebar control-sidebar-dark">
+    <!-- Control sidebar content goes here -->
+  </aside>
+  <!-- /.control-sidebar -->
+</div>
+<!-- ./wrapper -->
+
+<!-- jQuery -->
+<script src="../plugins/jquery/jquery.min.js"></script>
+<!-- Bootstrap 4 -->
+<script src="../plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<!-- AdminLTE App -->
+<script src="../dist/js/adminlte.min.js"></script>
+<!-- AdminLTE for demo purposes -->
+<script src="../dist/js/demo.js"></script>
+</body>
+</html>
+<script>
+$(".salvar").click(function() {
+	var txtUsuario 	= $('#txtUsuario').val();
+	var txtEmail 	= $('#txtEmail').val();
+
+	$.ajax({
+		url 	: "exec.php",
+		type 	: 'post',
+		data 	: {
+			usuario : txtUsuario,
+			email 	:txtEmail
+		},
+		beforeSend : function(){
+			$(".msg").html("GRAVANDO...");
+		}
+	})
+	.done(function(msg){
+		$(".msg").html("DADOS ATUALIZADOS COM SUCESSO!");
+		setTimeout(1000);
+		$(".msg").html("");
+	})
+	.fail(function(jqXHR, textStatus, msg){
+		$(".msg").html("ERRO AO TENTAR GRAVAR OS DADOS!");
+	});
+});
+</script>
